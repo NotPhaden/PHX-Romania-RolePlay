@@ -1,0 +1,227 @@
+<head>
+  <meta charset="utf-8" />
+  <title>PHX Romania — Dashboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --card:#141416;
+      --muted:#bfc0c2;
+      --accent-discord:#7289da;
+      --accent-join:#2fd65a;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:1000px;
+      --text:#ffffff;
+      --link:#9ad1ff;
+      --shadow: 0 6px 18px rgba(0,0,0,0.6);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+
+    .wrapper{
+      max-width:var(--maxw);
+      margin:28px auto;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.03);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .wrapper::before{
+      content:"";
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:radial-gradient(circle at 30% 30%, #ff6b00, transparent 40%), radial-gradient(circle at 70% 70%, #7289da, transparent 40%);
+      animation: bgMove 20s linear infinite;
+      opacity:0.15;
+      pointer-events:none;
+    }
+    @keyframes bgMove{
+      0%{transform:rotate(0deg);}
+      100%{transform:rotate(360deg);}
+    }
+
+    .header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
+    }
+    .header img.logo{
+      height:56px;
+      width:auto;
+      border-radius:10px;
+      background:var(--glass);
+      padding:6px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .site-title{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:0.3px;
+    }
+    .nav{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:8px;
+      font-weight:600;
+      transition:0.2s;
+    }
+    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.02) }
+
+    .hero{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:16px;
+      box-shadow:0 4px 18px rgba(0,0,0,0.5);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .h1{font-size:18px;margin:0 0 8px 0}
+    .p-muted{color:var(--muted);margin:0 0 12px 0}
+
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      transition:0.3s;
+      cursor:pointer;
+    }
+    .btn-discord{background:var(--accent-discord); color:#fff;}
+    .btn-discord:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-discord);}
+    .btn-join{background:var(--accent-join); color:#0b0b0b;}
+    .btn-join:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-join);}
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:16px;
+      margin-top:20px;
+      position:relative;
+      z-index:1;
+    }
+    .feature-card{
+      background:var(--card);
+      padding:16px;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.03);
+      transition:0.3s;
+    }
+    .feature-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 0 20px rgba(255,255,255,0.2);
+    }
+    .feature-card h3{margin-bottom:8px; font-size:16px; color:var(--link);}
+    .feature-card p{font-size:13px; color:var(--muted); margin:0;}
+
+    footer{
+      margin-top:30px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      position:relative;
+      z-index:1;
+    }
+
+    @media (max-width:640px){
+      .header{flex-direction:column; align-items:flex-start}
+      .nav{margin-left:0; width:100%; justify-content:space-between}
+      .hero{flex-direction:column; text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <img src="logo.png" alt="PHX Romania" class="logo">
+      <div>
+        <div class="site-title">PHX Romania</div>
+        <div class="p-muted">Server FiveM • Comunitate RO</div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Dashboard</a>
+        <a href="regulamente.html">Regulamente</a>
+        <a href="reclamatii.html">Reclamații Staff</a>
+        <a href="sugestii.html">Sugestii</a>
+        <a href="cerere_unban.html">Cerere Unban</a>
+      </nav>
+    </header>
+
+    <section class="hero card">
+      <div>
+        <h1 class="h1">Bun venit pe PHX Romania</h1>
+        <p class="p-muted">Alătură-te comunității noastre pe Discord sau intră direct pe server.</p>
+        <p>
+          <a class="btn btn-discord" href="https://discord.gg/e7NcgtNJzj" target="_blank">Intră pe Discord</a>
+          <a class="btn btn-join" href="https://cfx.re/join/q9ykk4" target="_blank">Join Server</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <h3>Roleplay Avansat</h3>
+        <p>Experiență reală cu reguli stricte și facțiuni echilibrate.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Mafii și Facțiuni</h3>
+        <p>Intră în lumea mafioților sau alte facțiuni exclusive.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Medici & Poliție</h3>
+        <p>Roluri importante pentru RP realist și aventuri captivante.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Evenimente Săptămânale</h3>
+        <p>Premii, misiuni speciale și distracție garantată.</p>
+      </div>
+    </section>
+
+    <footer>
+      PHX Romania — Toate drepturile rezervate • 2025
+    </footer>
+  </div>
+</body>
+

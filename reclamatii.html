@@ -1,0 +1,243 @@
+<head>
+  <meta charset="utf-8" />
+  <title>PHX Romania — Reclamații Staff</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --card:#141416;
+      --muted:#bfc0c2;
+      --accent-discord:#7289da;
+      --accent-join:#2fd65a;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:1000px;
+      --text:#ffffff;
+      --link:#9ad1ff;
+      --shadow: 0 6px 18px rgba(0,0,0,0.6);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+
+    .wrapper{
+      max-width:var(--maxw);
+      margin:28px auto;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.03);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .wrapper::before{
+      content:"";
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:radial-gradient(circle at 30% 30%, #ff6b00, transparent 40%), radial-gradient(circle at 70% 70%, #7289da, transparent 40%);
+      animation: bgMove 20s linear infinite;
+      opacity:0.15;
+      pointer-events:none;
+    }
+    @keyframes bgMove{
+      0%{transform:rotate(0deg);}
+      100%{transform:rotate(360deg);}
+    }
+
+    .header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
+    }
+    .header img.logo{
+      height:56px;
+      width:auto;
+      border-radius:10px;
+      background:var(--glass);
+      padding:6px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .site-title{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:0.3px;
+    }
+    .nav{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:8px;
+      font-weight:600;
+      transition:0.2s;
+    }
+    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.02) }
+
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:16px;
+      box-shadow:0 4px 18px rgba(0,0,0,0.5);
+      border:1px solid rgba(255,255,255,0.02);
+      margin-bottom:20px;
+    }
+
+    h1,h2,h3{margin:0 0 8px 0}
+    .p-muted{color:var(--muted);margin:0 0 12px 0}
+
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      transition:0.3s;
+      cursor:pointer;
+      margin:4px 2px;
+    }
+    .btn-discord{background:var(--accent-discord); color:#fff;}
+    .btn-discord:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-discord);}
+    .btn-join{background:var(--accent-join); color:#0b0b0b;}
+    .btn-join:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-join);}
+
+    input, textarea{
+      width:100%;
+      padding:10px;
+      margin:6px 0 12px 0;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:var(--card);
+      color:var(--text);
+      font-family:inherit;
+      font-size:14px;
+    }
+
+    footer{
+      margin-top:30px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      position:relative;
+      z-index:1;
+    }
+
+    @media (max-width:640px){
+      .header{flex-direction:column; align-items:flex-start}
+      .nav{margin-left:0; width:100%; justify-content:space-between}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <img src="logo.png" alt="PHX Romania" class="logo">
+      <div>
+        <div class="site-title">PHX Romania</div>
+        <div class="p-muted">Server FiveM • Comunitate RO</div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Dashboard</a>
+        <a href="regulamente.html">Regulamente</a>
+        <a href="reclamatii.html">Reclamații Staff</a>
+        <a href="sugestii.html">Sugestii</a>
+        <a href="cerere_unban.html">Cerere Unban</a>
+      </nav>
+    </header>
+
+    <section class="card">
+      <h1>Trimite o reclamație către Staff</h1>
+      <p class="p-muted">Completează formularul de mai jos. Reclamația ta va fi trimisă pe Discord staff-ului.</p>
+
+      <form id="reclamatieForm">
+        <label for="id_tau">ID-ul tău:</label>
+        <input type="text" id="id_tau" name="id_tau" required>
+
+        <label for="id_reclamat">ID-ul persoanei reclamată:</label>
+        <input type="text" id="id_reclamat" name="id_reclamat" required>
+
+        <label for="motiv">Motivul reclamației:</label>
+        <textarea id="motiv" name="motiv" rows="3" required></textarea>
+
+        <label for="dovada">Link filmare / dovadă (obligatoriu):</label>
+        <input type="url" id="dovada" name="dovada">
+
+        <label for="detalii">Detalii suplimentare (opțional):</label>
+        <textarea id="detalii" name="detalii" rows="3"></textarea>
+
+        <button type="submit" class="btn btn-discord">Trimite Reclamație</button>
+      </form>
+
+      <p id="status" class="p-muted"></p>
+
+      <a href="index.html" class="btn btn-join">Înapoi la Dashboard</a>
+    </section>
+  </div>
+
+  <script>
+    const webhookURL = "https://discord.com/api/webhooks/1439125447580319828/WLRL8cudiHyLQvanrPTNr2uSiXMwL3RdX6gdrJUsFiyYbpBEp_y3guCzejOXT5dsOVEZ";
+
+    document.getElementById('reclamatieForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      const idTau = document.getElementById('id_tau').value.trim();
+      const idReclamat = document.getElementById('id_reclamat').value.trim();
+      const motiv = document.getElementById('motiv').value.trim();
+      const dovada = document.getElementById('dovada').value.trim() || "N/A";
+      const detalii = document.getElementById('detalii').value.trim() || "N/A";
+
+      if(!idTau || !idReclamat || !motiv){
+        document.getElementById('status').innerText = "Completează câmpurile obligatorii!";
+        return;
+      }
+
+      const payload = {
+        content: `**Reclamație Staff PHX Romania**\n**ID Expeditor:** ${idTau}\n**ID Reclamat:** ${idReclamat}\n**Motiv:** ${motiv}\n**Dovadă:** ${dovada}\n**Detalii:** ${detalii}`
+      };
+
+      try {
+        const response = await fetch(webhookURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if(response.ok){
+          document.getElementById('status').innerText = "Reclamația a fost trimisă cu succes!";
+          document.getElementById('reclamatieForm').reset();
+        } else {
+          document.getElementById('status').innerText = "Eroare la trimiterea reclamației. Încearcă din nou.";
+        }
+      } catch(err){
+        document.getElementById('status').innerText = "Eroare la trimiterea reclamației. Verifică conexiunea.";
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+

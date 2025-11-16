@@ -3,7 +3,6 @@
   <meta charset="utf-8" />
   <title>PHX Romania — Sugestii</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="favicon.png" type="image/png">
 
   <style>
     :root{
@@ -14,59 +13,58 @@
       --accent-join:#2fd65a;
       --glass: rgba(255,255,255,0.03);
       --radius:12px;
-      --maxw:1000px;
+      --maxw:100%;
       --text:#ffffff;
       --link:#9ad1ff;
       --shadow: 0 6px 18px rgba(0,0,0,0.6);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%; margin:0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;}
     body{
-      margin:0;
-      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%);
+      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%),
+                  url('https://i.imgur.com/8dJg7gS.png');
+      background-size: cover;
+      background-attachment: fixed;
       color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
       overflow-x:hidden;
     }
 
-    .wrapper{
-      max-width:var(--maxw);
-      margin:28px auto;
-      padding:20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,0.03);
-      position:relative;
-      overflow:hidden;
+    @keyframes snow {
+      0% { transform: translateY(-10px); opacity: 0.8; }
+      100% { transform: translateY(600px); opacity: 0; }
     }
-
-    .wrapper::before{
-      content:"";
-      position:absolute;
-      top:-50%;
-      left:-50%;
-      width:200%;
-      height:200%;
-      background:radial-gradient(circle at 30% 30%, #ff6b00, transparent 40%), radial-gradient(circle at 70% 70%, #7289da, transparent 40%);
-      animation: bgMove 20s linear infinite;
-      opacity:0.15;
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 18px;
+      opacity: 0.7;
+      animation: snow 7s linear infinite;
       pointer-events:none;
     }
-    @keyframes bgMove{
-      0%{transform:rotate(0deg);}
-      100%{transform:rotate(360deg);}
+
+    .wrapper{
+      width:100%;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:40px 60px;
+      background: rgba(20,20,22,0.55);
+      backdrop-filter: blur(6px);
+      border-radius:0;
+      min-height:100vh;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 0 40px rgba(255,255,255,0.05);
+      position:relative;
+      overflow:hidden;
     }
 
     .header{
       display:flex;
       gap:16px;
       align-items:center;
-      margin-bottom:18px;
+      margin-bottom:20px;
       position:relative;
       z-index:1;
     }
@@ -79,7 +77,7 @@
       border:1px solid rgba(255,255,255,0.02);
     }
     .site-title{
-      font-size:20px;
+      font-size:22px;
       font-weight:700;
       letter-spacing:0.3px;
     }
@@ -97,14 +95,14 @@
       font-weight:600;
       transition:0.2s;
     }
-    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.02) }
+    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.05); }
 
     .card{
-      background:var(--card);
-      border-radius:12px;
-      padding:16px;
-      box-shadow:0 4px 18px rgba(0,0,0,0.5);
-      border:1px solid rgba(255,255,255,0.02);
+      background:rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 0 16px rgba(255,255,255,0.06);
       margin-bottom:20px;
     }
 
@@ -132,7 +130,7 @@
       margin:6px 0 12px 0;
       border-radius:8px;
       border:1px solid rgba(255,255,255,0.1);
-      background:var(--card);
+      background:rgba(20,20,22,0.55);
       color:var(--text);
       font-family:inherit;
       font-size:14px;
@@ -150,87 +148,97 @@
     @media (max-width:640px){
       .header{flex-direction:column; align-items:flex-start}
       .nav{margin-left:0; width:100%; justify-content:space-between}
+      .wrapper{padding:20px}
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header class="header">
-      <img src="logo.png" alt="PHX Romania" class="logo">
-      <div>
-        <div class="site-title">PHX Romania</div>
-        <div class="p-muted">Server FiveM • Comunitate RO</div>
-      </div>
+<div class="wrapper">
+  <header class="header">
+    <img src="logo.png" alt="PHX Romania" class="logo">
+    <div>
+      <div class="site-title">PHX Romania</div>
+      <div class="p-muted">Server FiveM • Comunitate RO</div>
+    </div>
 
-      <nav class="nav">
-        <a href="index.html">Dashboard</a>
-        <a href="regulamente.html">Regulamente</a>
-        <a href="reclamatii.html">Reclamații Staff</a>
-        <a href="sugestii.html">Sugestii</a>
-        <a href="cerere_unban.html">Cerere Unban</a>
-      </nav>
-    </header>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="regulamente.html">Regulamente</a>
+      <a href="reclamatii.html">Reclamații Staff</a>
+      <a href="sugestii.html">Sugestii</a>
+      <a href="cerere_unban.html">Cerere Unban</a>
+    </nav>
+  </header>
 
-    <section class="card">
-      <h1>Trimite o sugestie</h1>
-      <p class="p-muted">Completează formularul de mai jos. Sugestia ta va fi trimisă pe Discord staff-ului.</p>
+  <section class="card">
+    <h1>Trimite o sugestie</h1>
+    <p class="p-muted">Completează formularul de mai jos. Sugestia ta va fi trimisă pe Discord staff-ului.</p>
 
-      <form id="sugestieForm">
-        <label for="id_tau">ID-ul tău:</label>
-        <input type="text" id="id_tau" name="id_tau" required>
+    <form id="sugestieForm">
+      <label for="id_tau">ID-ul tău:</label>
+      <input type="text" id="id_tau" name="id_tau" required>
 
-        <label for="sugestie">Sugestie:</label>
-        <textarea id="sugestie" name="sugestie" rows="4" required></textarea>
+      <label for="sugestie">Sugestie:</label>
+      <textarea id="sugestie" name="sugestie" rows="4" required></textarea>
 
-        <label for="impact">Cu ce ne-ar ajuta (opțional):</label>
-        <textarea id="impact" name="impact" rows="3"></textarea>
+      <label for="impact">Cu ce ne-ar ajuta (opțional):</label>
+      <textarea id="impact" name="impact" rows="3"></textarea>
 
-        <button type="submit" class="btn btn-discord">Trimite Sugestia</button>
-      </form>
+      <button type="submit" class="btn btn-discord">Trimite Sugestia</button>
+    </form>
 
-      <p id="status" class="p-muted"></p>
+    <p id="status" class="p-muted"></p>
 
-      <a href="index.html" class="btn btn-join">Înapoi la Dashboard</a>
-    </section>
-  </div>
+    <a href="index.html" class="btn btn-join">Înapoi la Dashboard</a>
+  </section>
+</div>
 
-  <script>
-    const webhookURL = "https://discord.com/api/webhooks/1439127612269265027/qRm4yZWnvfqtyUloz0dmliG-5Kex8Unjt6VJgoZsG_gLv2aNMAi0V2usLDTiKW1NU-rX";
+<script>
+  for(let i=0;i<25;i++){
+    let f=document.createElement("div");
+    f.className="snowflake";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(6+Math.random()*4)+"s";
+    f.innerHTML="❄";
+    document.body.appendChild(f);
+  }
 
-    document.getElementById('sugestieForm').addEventListener('submit', async function(e){
-      e.preventDefault();
+  const webhookURL = "https://discord.com/api/webhooks/1439127612269265027/qRm4yZWnvfqtyUloz0dmliG-5Kex8Unjt6VJgoZsG_gLv2aNMAi0V2usLDTiKW1NU-rX";
 
-      const idTau = document.getElementById('id_tau').value.trim();
-      const sugestie = document.getElementById('sugestie').value.trim();
-      const impact = document.getElementById('impact').value.trim() || "N/A";
+  document.getElementById('sugestieForm').addEventListener('submit', async function(e){
+    e.preventDefault();
 
-      if(!idTau || !sugestie){
-        document.getElementById('status').innerText = "Completează câmpurile obligatorii!";
-        return;
+    const idTau = document.getElementById('id_tau').value.trim();
+    const sugestie = document.getElementById('sugestie').value.trim();
+    const impact = document.getElementById('impact').value.trim() || "N/A";
+
+    if(!idTau || !sugestie){
+      document.getElementById('status').innerText = "Completează câmpurile obligatorii!";
+      return;
+    }
+
+    const payload = {
+      content: `**Sugestie PHX Romania**\n**ID Expeditor:** ${idTau}\n**Sugestie:** ${sugestie}\n**Impact:** ${impact}`
+    };
+
+    try {
+      const response = await fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if(response.ok){
+        document.getElementById('status').innerText = "Sugestia a fost trimisă cu succes!";
+        document.getElementById('sugestieForm').reset();
+      } else {
+        document.getElementById('status').innerText = "Eroare la trimiterea sugestiei. Încearcă din nou.";
       }
-
-      const payload = {
-        content: `**Sugestie PHX Romania**\n**ID Expeditor:** ${idTau}\n**Sugestie:** ${sugestie}\n**Impact:** ${impact}`
-      };
-
-      try {
-        const response = await fetch(webhookURL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if(response.ok){
-          document.getElementById('status').innerText = "Sugestia a fost trimisă cu succes!";
-          document.getElementById('sugestieForm').reset();
-        } else {
-          document.getElementById('status').innerText = "Eroare la trimiterea sugestiei. Încearcă din nou.";
-        }
-      } catch(err){
-        document.getElementById('status').innerText = "Eroare la trimiterea sugestiei. Verifică conexiunea.";
-        console.error(err);
-      }
-    });
-  </script>
+    } catch(err){
+      document.getElementById('status').innerText = "Eroare la trimiterea sugestiei. Verifică conexiunea.";
+      console.error(err);
+    }
+  });
+</script>
 </body>
 

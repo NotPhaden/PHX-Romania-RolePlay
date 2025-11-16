@@ -3,7 +3,6 @@
   <meta charset="utf-8" />
   <title>PHX Romania — Regulamente</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="favicon.png" type="image/png">
 
   <style>
     :root{
@@ -14,59 +13,58 @@
       --accent-join:#2fd65a;
       --glass: rgba(255,255,255,0.03);
       --radius:12px;
-      --maxw:1000px;
+      --maxw:100%;
       --text:#ffffff;
       --link:#9ad1ff;
       --shadow: 0 6px 18px rgba(0,0,0,0.6);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%; margin:0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;}
     body{
-      margin:0;
-      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%);
+      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%),
+                  url('https://i.imgur.com/8dJg7gS.png');
+      background-size: cover;
+      background-attachment: fixed;
       color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
       overflow-x:hidden;
     }
 
-    .wrapper{
-      max-width:var(--maxw);
-      margin:28px auto;
-      padding:20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,0.03);
-      position:relative;
-      overflow:hidden;
+    @keyframes snow {
+      0% { transform: translateY(-10px); opacity: 0.8; }
+      100% { transform: translateY(600px); opacity: 0; }
     }
-
-    .wrapper::before{
-      content:"";
-      position:absolute;
-      top:-50%;
-      left:-50%;
-      width:200%;
-      height:200%;
-      background:radial-gradient(circle at 30% 30%, #ff6b00, transparent 40%), radial-gradient(circle at 70% 70%, #7289da, transparent 40%);
-      animation: bgMove 20s linear infinite;
-      opacity:0.15;
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 18px;
+      opacity: 0.7;
+      animation: snow 7s linear infinite;
       pointer-events:none;
     }
-    @keyframes bgMove{
-      0%{transform:rotate(0deg);}
-      100%{transform:rotate(360deg);}
+
+    .wrapper{
+      width:100%;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:40px 60px;
+      background: rgba(20,20,22,0.55);
+      backdrop-filter: blur(6px);
+      border-radius:0;
+      min-height:100vh;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 0 40px rgba(255,255,255,0.05);
+      position:relative;
+      overflow:hidden;
     }
 
     .header{
       display:flex;
       gap:16px;
       align-items:center;
-      margin-bottom:18px;
+      margin-bottom:20px;
       position:relative;
       z-index:1;
     }
@@ -79,7 +77,7 @@
       border:1px solid rgba(255,255,255,0.02);
     }
     .site-title{
-      font-size:20px;
+      font-size:22px;
       font-weight:700;
       letter-spacing:0.3px;
     }
@@ -97,38 +95,35 @@
       font-weight:600;
       transition:0.2s;
     }
-    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.02) }
+    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.05); }
 
     .card{
-      background:var(--card);
-      border-radius:12px;
-      padding:16px;
-      box-shadow:0 4px 18px rgba(0,0,0,0.5);
-      border:1px solid rgba(255,255,255,0.02);
+      background:rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 0 16px rgba(255,255,255,0.06);
       margin-bottom:20px;
     }
 
-    h1,h2,h3{margin:0 0 8px 0}
+    .h1{font-size:20px;margin:0 0 8px 0}
     .p-muted{color:var(--muted);margin:0 0 12px 0}
 
     .btn{
       display:inline-block;
-      padding:8px 14px;
+      padding:10px 14px;
       border-radius:10px;
       text-decoration:none;
       font-weight:700;
       transition:0.3s;
       cursor:pointer;
-      margin:4px 2px;
     }
     .btn-select{background:var(--accent-discord); color:#fff;}
     .btn-select:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-discord);}
     .btn-back{background:var(--accent-join); color:#0b0b0b;}
     .btn-back:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-join);}
 
-    .regulament{
-      display:none;
-    }
+    .regulament{ display:none; }
 
     footer{
       margin-top:30px;
@@ -142,75 +137,84 @@
     @media (max-width:640px){
       .header{flex-direction:column; align-items:flex-start}
       .nav{margin-left:0; width:100%; justify-content:space-between}
+      .wrapper{padding:20px}
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header class="header">
-      <img src="logo.png" alt="PHX Romania" class="logo">
-      <div>
-        <div class="site-title">PHX Romania</div>
-        <div class="p-muted">Server FiveM • Comunitate RO</div>
-      </div>
 
-      <nav class="nav">
-        <a href="index.html">Dashboard</a>
-        <a href="regulamente.html">Regulamente</a>
-        <a href="reclamatii.html">Reclamații Staff</a>
-        <a href="sugestii.html">Sugestii</a>
-        <a href="cerere_unban.html">Cerere Unban</a>
-      </nav>
-    </header>
+<div class="wrapper">
+  <header class="header">
+    <img src="logo.png" alt="PHX Romania" class="logo">
+    <div>
+      <div class="site-title">PHX Romania</div>
+      <div class="p-muted">Server FiveM • Comunitate RO</div>
+    </div>
 
-    <section class="card">
-      <h1>Regulamente PHX Romania</h1>
-      <p class="p-muted">Selectează regulamentul pe care vrei să-l vizualizezi:</p>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="regulamente.html">Regulamente</a>
+      <a href="reclamatii.html">Reclamații Staff</a>
+      <a href="sugestii.html">Sugestii</a>
+      <a href="cerere_unban.html">Cerere Unban</a>
+    </nav>
+  </header>
 
-      <div>
-        <button class="btn btn-select" onclick="showReg('general')">Regulament General</button>
-        <button class="btn btn-select" onclick="showReg('staff')">Regulament Staff</button>
-        <button class="btn btn-select" onclick="showReg('mafii')">Regulament Mafii</button>
-        <button class="btn btn-select" onclick="showReg('medici')">Regulament Medici</button>
-        <button class="btn btn-select" onclick="showReg('politie')">Regulament Poliție</button>
-      </div>
+  <section class="card">
+    <h1>Regulamente PHX Romania</h1>
+    <p class="p-muted">Selectează regulamentul pe care vrei să-l vizualizezi:</p>
 
-      <div id="general" class="regulament card">
-        <h2>Regulament General</h2>
-        <p>Respectă regulile serverului, nu insulta, nu face cheat și respectă RP-ul.</p>
-      </div>
+    <div>
+      <button class="btn btn-select" onclick="showReg('general')">Regulament General</button>
+      <button class="btn btn-select" onclick="showReg('staff')">Regulament Staff</button>
+      <button class="btn btn-select" onclick="showReg('mafii')">Regulament Mafii</button>
+      <button class="btn btn-select" onclick="showReg('medici')">Regulament Medici</button>
+      <button class="btn btn-select" onclick="showReg('politie')">Regulament Poliție</button>
+    </div>
 
-      <div id="staff" class="regulament card">
-        <h2>Regulament Staff</h2>
-        <p>Staff-ul trebuie să fie profesionist, să respecte jucătorii și regulile interne, fără abuz de putere.</p>
-      </div>
+    <div id="general" class="regulament card">
+      <h2>Regulament General</h2>
+      <p>Respectă regulile serverului, nu insulta, nu face cheat și respectă RP-ul.</p>
+    </div>
 
-      <div id="mafii" class="regulament card">
-        <h2>Regulament Mafii</h2>
-        <p>Membrii mafiei trebuie să respecte rolul, să nu facă powergaming și să colaboreze cu facțiunea.</p>
-      </div>
+    <div id="staff" class="regulament card">
+      <h2>Regulament Staff</h2>
+      <p>Staff-ul trebuie să fie profesionist, să respecte jucătorii și regulile interne, fără abuz de putere.</p>
+    </div>
 
-      <div id="medici" class="regulament card">
-        <h2>Regulament Medici</h2>
-        <p>Medicii trebuie să acorde ajutor corect, să respecte RP-ul și să interacționeze responsabil cu pacienții.</p>
-      </div>
+    <div id="mafii" class="regulament card">
+      <h2>Regulament Mafii</h2>
+      <p>Membrii mafiei trebuie să respecte rolul, să nu facă powergaming și să colaboreze cu facțiunea.</p>
+    </div>
 
-      <div id="politie" class="regulament card">
-        <h2>Regulament Poliție</h2>
-        <p>Polițiștii trebuie să respecte regulile de RP, să aplice legea corect și să colaboreze cu ceilalți jucători.</p>
-      </div>
+    <div id="medici" class="regulament card">
+      <h2>Regulament Medici</h2>
+      <p>Medicii trebuie să acorde ajutor corect, să respecte RP-ul și să interacționeze responsabil cu pacienții.</p>
+    </div>
 
-      <a href="index.html" class="btn btn-back">Înapoi la Dashboard</a>
-    </section>
-  </div>
+    <div id="politie" class="regulament card">
+      <h2>Regulament Poliție</h2>
+      <p>Polițiștii trebuie să respecte regulile de RP, să aplice legea corect și să colaboreze cu ceilalți jucători.</p>
+    </div>
 
-  <script>
-    function showReg(id){
-      const regs = document.querySelectorAll('.regulament');
-      regs.forEach(r => r.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-  </script>
+
+<script>
+  for(let i=0;i<25;i++){
+    let f=document.createElement("div");
+    f.className="snowflake";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(6+Math.random()*4)+"s";
+    f.innerHTML="❄";
+    document.body.appendChild(f);
+  }
+
+  function showReg(id){
+    const regs = document.querySelectorAll('.regulament');
+    regs.forEach(r => r.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+</script>
+
 </body>
 

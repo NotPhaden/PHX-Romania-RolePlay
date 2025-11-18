@@ -1,78 +1,42 @@
 <head>
   <link rel="icon" type="image/png" href="logo.png">
   <meta charset="utf-8" />
-  <title>PHX Romania — Dashboard</title>
+  <title>PHX Romania — Site Închis</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <style>
-    :root{
-      --bg:#0b0b0c;
-      --card:#141416;
-      --muted:#bfc0c2;
-      --accent-discord:#7289da;
-      --accent-join:#2fd65a;
-      --glass: rgba(255,255,255,0.03);
-      --radius:12px;
-      --maxw:100%;
-      --text:#ffffff;
-      --link:#9ad1ff;
-      --shadow: 0 6px 18px rgba(0,0,0,0.6);
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;}
     body{
-      background: linear-gradient(180deg,#050506 0%, #0c0c0d 60%),
-                  url('https://i.imgur.com/8dJg7gS.png');
-      background-size: cover;
-      background-attachment: fixed;
-      color:var(--text);
-      line-height:1.5;
-      overflow-x:hidden;
-    }
-
-    #loadingScreen {
-      position:fixed;
-      top:0; left:0; right:0; bottom:0;
+      margin:0;
+      height:100vh;
+      background: linear-gradient(to bottom, #0d1b2a, #1b263b, #415a77);
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
-      z-index:9999;
-      background: linear-gradient(to bottom, #0d1b2a, #1b263b, #415a77); 
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color:white;
       overflow:hidden;
     }
-    .light {
-      position:absolute;
-      width:8px; height:8px;
-      border-radius:50%;
-      background: #ffcb74;
-      animation: blink 1.5s infinite alternate;
-    }
-    @keyframes blink {
-      0% {opacity:0.2;}
-      50%{opacity:1;}
-      100%{opacity:0.2;}
+
+    .logo{
+      width:160px;
+      height:auto;
+      animation: pulse 2.5s infinite ease-in-out;
     }
 
-    #loadingScreen img {
-      width:120px;
-      height:auto;
-      margin-bottom:20px;
-      animation: logoBounce 1.5s infinite;
-      z-index:2;
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.85; }
     }
-    #loadingScreen h1 {
-      color:#fff;
-      font-size:24px;
-      font-weight:700;
-      margin:5px 0;
-      letter-spacing:1px;
-      z-index:2;
-    }
-    @keyframes logoBounce {
-      0%,100%{transform: translateY(0);}
-      50%{transform: translateY(-15px);}
+
+    h1{
+      font-size:32px;
+      margin-top:20px;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      font-weight:800;
+      text-align:center;
     }
 
     @keyframes snow {
@@ -87,222 +51,24 @@
       opacity: 0.7;
       animation: snow 7s linear infinite;
       pointer-events:none;
-      z-index:3;
-    }
-
-    .wrapper{
-      width:100%;
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:40px 60px;
-      background: rgba(20,20,22,0.55);
-      backdrop-filter: blur(6px);
-      border-radius:0;
-      min-height:100vh;
-      border:1px solid rgba(255,255,255,0.06);
-      box-shadow:0 0 40px rgba(255,255,255,0.05);
-      position:relative;
-      overflow:hidden;
-      display:none;
-    }
-
-    .header{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      margin-bottom:20px;
-      position:relative;
-      z-index:1;
-    }
-    .header img.logo{
-      height:56px;
-      width:auto;
-      border-radius:10px;
-      background:var(--glass);
-      padding:6px;
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .site-title{
-      font-size:22px;
-      font-weight:700;
-      letter-spacing:0.3px;
-    }
-    .nav{
-      margin-left:auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .nav a{
-      color:var(--muted);
-      text-decoration:none;
-      padding:8px 12px;
-      border-radius:8px;
-      font-weight:600;
-      transition:0.2s;
-    }
-    .nav a:hover{ color:var(--text); background:rgba(255,255,255,0.05); }
-
-    .hero{
-      display:flex;
-      gap:20px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:18px;
-      position:relative;
-      z-index:1;
-    }
-    .card{
-      background:rgba(255,255,255,0.04);
-      border-radius:14px;
-      padding:22px;
-      border:1px solid rgba(255,255,255,0.06);
-      box-shadow:0 0 16px rgba(255,255,255,0.06);
-    }
-
-    .h1{font-size:20px;margin:0 0 8px 0}
-    .p-muted{color:var(--muted);margin:0 0 12px 0}
-
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:700;
-      transition:0.3s;
-      cursor:pointer;
-    }
-    .btn-discord{background:var(--accent-discord); color:#fff;}
-    .btn-discord:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-discord);}
-    .btn-join{background:var(--accent-join); color:#0b0b0b;}
-    .btn-join:hover{transform:scale(1.05); box-shadow:0 0 20px var(--accent-join);}
-
-    .features{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:20px;
-      margin-top:20px;
-      position:relative;
-      z-index:1;
-    }
-    .feature-card{
-      background:rgba(255,255,255,0.05);
-      padding:22px;
-      border-radius:14px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.06);
-      transition:0.3s;
-    }
-    .feature-card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 0 20px rgba(255,255,255,0.25);
-    }
-    .feature-card h3{margin-bottom:8px; font-size:17px; color:#ffcb74;}
-    .feature-card p{font-size:14px; color:var(--muted); margin:0;}
-
-    footer{
-      margin-top:30px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-      position:relative;
-      z-index:1;
-    }
-
-    @media (max-width:640px){
-      .header{flex-direction:column; align-items:flex-start}
-      .nav{margin-left:0; width:100%; justify-content:space-between}
-      .hero{flex-direction:column; text-align:center}
-      .wrapper{padding:20px}
     }
   </style>
 </head>
 <body>
 
-<div id="loadingScreen">
-  <img src="logo.png" alt="PHX Romania Logo">
-  <h1>PHX Romania RolePlay</h1>
-  <h1>LOADING...</h1>
-  <div class="light" style="top:10%; left:15%;"></div>
-  <div class="light" style="top:20%; left:80%;"></div>
-  <div class="light" style="top:50%; left:30%;"></div>
-  <div class="light" style="top:70%; left:60%;"></div>
-  <div class="light" style="top:85%; left:40%;"></div>
-</div>
+  <img src="logo.png" class="logo" alt="PHX Romania">
+  <h1>SITE ÎNCHIS</h1>
 
-<div class="wrapper">
-  <header class="header">
-    <img src="logo.png" alt="PHX Romania" class="logo">
-    <div>
-      <div class="site-title">PHX Romania</div>
-      <div class="p-muted">Server FiveM • Comunitate RO</div>
-    </div>
-
-    <nav class="nav">
-      <a href="index.html">Dashboard</a>
-      <a href="regulamente.html">Regulamente</a>
-      <a href="reclamatii.html">Reclamații Staff</a>
-      <a href="sugestii.html">Sugestii</a>
-      <a href="cerere_unban.html">Cerere Unban</a>
-    </nav>
-  </header>
-
-  <section class="hero card">
-    <div>
-      <h1 class="h1">Bun venit pe PHX Romania</h1>
-      <p class="p-muted">Alătură-te comunității noastre pe Discord sau intră direct pe server.</p>
-      <p>
-        <a class="btn btn-discord" href="https://discord.gg/e7NcgtNJzj" target="_blank">Intră pe Discord</a>
-        <a class="btn btn-join" href="https://cfx.re/join/q9ykk4" target="_blank">Intră pe Server</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="feature-card">
-      <h3>Roleplay Avansat</h3>
-      <p>Experiență reală cu reguli stricte și facțiuni echilibrate.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Mafii și Facțiuni</h3>
-      <p>Intră în lumea mafioților sau alte facțiuni exclusive.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Medici & Poliție</h3>
-      <p>Roluri importante pentru RP realist și aventuri captivante.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Evenimente Săptămânale</h3>
-      <p>Premii, misiuni speciale și distracție garantată.</p>
-    </div>
-  </section>
-
-  <footer>
-    PHX Romania — Toate drepturile rezervate • 2025
-  </footer>
-</div>
-
-<script>
-  for(let i=0;i<25;i++){
-    let f=document.createElement("div");
-    f.className="snowflake";
-    f.style.left=Math.random()*100+"vw";
-    f.style.animationDuration=(6+Math.random()*4)+"s";
-    f.innerHTML="❄";
-    document.body.appendChild(f);
-  }
-
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const loading = document.getElementById('loadingScreen');
-      loading.style.transition = "opacity 1s ease";
-      loading.style.opacity = 0;
-      setTimeout(() => {
-        loading.style.display = 'none';
-        document.querySelector('.wrapper').style.display = 'block';
-      }, 1000);
-    }, 6000); 
-  });
-</script>
+  <script>
+    for(let i=0;i<25;i++){
+      let f=document.createElement("div");
+      f.className="snowflake";
+      f.style.left=Math.random()*100+"vw";
+      f.style.animationDuration=(6+Math.random()*4)+"s";
+      f.innerHTML="❄";
+      document.body.appendChild(f);
+    }
+  </script>
 
 </body>
+
